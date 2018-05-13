@@ -1,0 +1,192 @@
+1) Given below is structure of experience/skills data. This is just a sample structure.
+{
+	"skills":[
+		{
+			"id":3,
+			"name":"Statistics"
+		},
+		{
+			"id":2,
+			"name":"Ethnography"
+		},
+		{
+			"id":1,
+			"name":"Tech Writing"
+		}
+	],
+	"experiences":[
+		{
+			"id":5,
+			"timeStart":{"month":10,"year":2015},
+			"timeEnd":{},
+			"workplace":"Purdue",
+			"title":"title-id-5",
+			"webpage":"#research",
+			"description":"Testing what if 2 entries have same start date and no end date",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":3,
+					"monthDuration":1,
+					"useDescription":"test"
+				},
+				{
+					"skillId":1,
+					"monthDuration":3,
+					"useDescription":"test"
+				}
+			]
+		},
+		{
+			"id":4,
+			"timeStart":{"month":10,"year":2015},
+			"timeEnd":{},
+			"workplace":"Purdue",
+			"title":"title-id-4",
+			"webpage":"#research",
+			"description":"Testing what if end date not given. Testing that if no timeEnd and skill-month=0, then it is autoset",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":3,
+					"monthDuration":0,
+					"useDescription":"test"
+				},
+				{
+					"skillId":1,
+					"monthDuration":4,
+					"useDescription":"test"
+				}
+			]
+		},
+		{
+			"id":3,
+			"timeStart":{"month":10,"year":2014},
+			"timeEnd":{"month":5,"year":2015},
+			"workplace":"<a href=\"maps.google.com\" target=\"_blank\">BASIS Flagstaff</a>",
+			"title":"title-id-3",
+			"webpage":"#research",
+			"description":"Testing what if 2 entries have same start and end time",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":2,
+					"monthDuration":0,
+					"useDescription":"This is to test if correct default is put"
+				},
+				{
+					"skillId":3,
+					"monthDuration":3,
+					"useDescription":"Test description"
+				}
+			]
+		},
+		{
+			"id":2,
+			"timeStart":{"month":10,"year":2014},
+			"timeEnd":{"month":5,"year":2015},
+			"workplace":"<a href=\"maps.google.com\" target=\"_blank\">BASIS Flagstaff</a>",
+			"title":"title-id-2",
+			"webpage":"#research",
+			"description":"Lot of work again, but confidential",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":2,
+					"monthDuration":0,
+					"useDescription":"This is to test if correct default is put"
+				},
+				{
+					"skillId":3,
+					"monthDuration":3,
+					"useDescription":"This is to test"
+				}
+			]
+		},
+		{
+			"id":1,
+			"timeStart":{"month":1,"year":2012},
+			"timeEnd":{"month":4,"year":2013},
+			"workplace":"<a href=\"//tamu.edu\" target=\"_blank\">TAMU</a>",
+			"title":"title-id-1",
+			"webpage":"#research",
+			"description":"Test sorting by startDate.",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":2,
+					"monthDuration":100,
+					"useDescription":"This is to check if skill with 100 duration gets changed to correct max"
+				},
+				{
+					"skillId":1,
+					"monthDuration":0,
+					"useDescription":"This is to check if skill with 0 duration is autoset"
+				}
+			]
+		}
+	]
+}
+
+2) When adding new data, do not modify exising structure of data. Simply add new entries as described below.
+
+3) To add data on new skills:
+3.1) Copy the template below (including the comma), fill in the values, and then add it after the square bracket in "skills":[
+		{
+			"id":0,
+			"name":"..."
+		},
+3.2) Id - give a UNIQUE numeric Id for skill
+3.3) Give a skill name. This is the name that will be used on graphs
+3.4) Note that only skills that are associated with experiences will be displayed on plots on webpage. So, it is of no harm if there are more skills and some don't have any experience associated with them. BUT, the vice versa should not occur, i.e. for each skill referenced by an experience, its entry should be available in this section.
+
+4) To add data on new experience:
+4.1) Copy the template below (including the comma), fill in the values, and then add it after the square bracket in "experiences":[
+		{
+			"id":5,
+			"timeStart":{"month":10,"year":2015},
+			"timeEnd":{},
+			"workplace":"Purdue",
+			"title":"title-id-5",
+			"webpage":"#research",
+			"description":"Testing what if 2 entries have same start date and no end date",
+			"papers":[],
+			"awards":[],
+			"skillsUsed":[
+				{
+					"skillId":3,
+					"monthDuration":1,
+					"useDescription":"test"
+				},
+				{
+					"skillId":1,
+					"monthDuration":3,
+					"useDescription":"test"
+				}
+			]
+		},
+		
+4.2) Id: has to be numeric and unique value. This is used to sort "Experience" if they hae same start and end date; or if they have same start data and are still ongoing
+4.3) TimeStart: give the month and year when the experience started. This value is necessary.
+4.4) TimeEnd: give the month and year when the experience ended. If this task is still ongoing, then just put empty curly brackets {}
+4.5) Workplace: provide the workplace where this effort was done. Suitably formatting the entry allows adding html links also. For complex cases, like, working at Purdue for BACI, one can put entry like "Purdue/BACI" along with adding html links
+4.6) Title: provide the title when working on this task, like, researcher, teaching assistant, etc.
+4.7) Webpage: If possible, give a link to the wepage with description of effort
+4.8) Description: Add a description of the research effort. Preferably, keep it small - around 5-10 lines, and only text and/or links, underlined, italics. Ideally, if a larger description need to be given, then add "webpage" entry which should contain link to where lot more description can be found.
+4.9) Papers: provide list of papers associated with this task. If possible, add weblinks also. Leave blank square brackets [] if there are no papers
+4.10) Awards: provide list of papers associated with this task. If possible, add weblinks also. Leave blank square brackets [] if there are no papers
+4.11) SkillsUsed: provide a list of skills-used in this experience. If there are no skills-used, just add empty square brackets. 
+4.11.1) If skills are used in an experience, then copy the template below (including the comma) and add it immediately after square brackets of "skillsUsed":[
+				{
+					"skillId":1,
+					"monthDuration":3,
+					"useDescription":"test"
+				},
+4.11.2) SkillId: provide the id of skill that was used. IMPORTANT: Note that the skills section discussed in #3 above SHOULD have an entry for this corresponding skillId
+4.11.3) MonthDuration: Give the total time (in months) within experience for which this particular skill was used. Leave this value as 0 if you want code to auto-fill. If monthsDuration is more than duration of experience, it will automaticaly be made proper
+4.11.4) UseDescription: provide a small text on how the skill was used.

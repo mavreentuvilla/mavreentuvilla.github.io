@@ -1,0 +1,248 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+/* Space out the Bootstrap <hr> more from previous element */
+.featurette-divider {
+  margin-top: 20px; 
+  margin-bottom : 40px
+}
+/* Add extra margin on top to create separation */
+.add-top-margin {
+  margin-top: 20px; 
+}
+/* Add a rounded border to element to create emphasis */
+.add-border{
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 10px;
+}
+
+.topNav>li:hover{
+    color: #fff;
+    background-color: #080808;
+}
+/* Tooltip for d3. See: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7 */
+.d3-tip {
+      line-height: 1;
+      padding: 6px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 4px;
+      font-size: 12px;
+}
+.d3-tip:after { /* Creates a small triangle extender for the tooltip */
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+}
+.d3-tip.n:after { /* Style northward tooltips specifically */
+      margin: -2px 0 0 0;
+      top: 100%;
+      left: 0;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+/* Help raise the caption so it is visible
+This is not necessary but ensures that caption is visible */
+.carousel-caption {
+  z-index: 10;
+}
+/* This enforces entire image to stretch and fill carousel
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+*/
+/* This enables centering image in carousel 
+NOTE: no need to set height for ".carousel" and ".carousel .item" - it is controlled by height of img inside carousel-item*/
+.carousel-inner > .item > img {
+    max-width: 80%;
+    margin: auto;
+	height: 500px;
+}
+/* When not filling entire carousel with image, this makes the carousel-end-chevron to change color when hovered */
+a.carousel-control:hover {
+    color:#ffffff;
+}
+
+
+/* CUSTOMIZE ELEMENTS IN ABOUT-ME-BODY
+-------------------------------------------------- */
+/* This class is applied to image on About-Me page. It combines img-responsve and center-block
+img-responsive used height:auto which causes small image to not use full column height, so changing to height:100% is the only major change here 
+A height 100% image looks weird, so margin-top/bottom of 20px is added*/
+.self-image {
+	display: block;
+	max-width: 100%;
+	height: 100%; 
+	max-height: 250px; /* prevent too big image */
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+/* Flex row is first used when making columns containing about-me image. The benefit of using it (http://codepen.io/bootstrapped/details/RrabNe/)
+compared to using Bootstrap's experimental suggestion to keep same height (http://getbootstrap.com.vn/examples/equal-height-columns/) is that
+the latter is not responsive (http://stackoverflow.com/questions/19695784/how-can-i-make-bootstrap-columns-all-the-same-height).
+The stackoverflow link also has other solutions, like
+Solution 1 using negative margin - does not break responsiveness. This is essentially making very large columns and then hiding overflow in row. Also, the margin/padding is selected in a manner that text and element "seems" to appear in correct position
+.row{
+    overflow: hidden; 
+}
+[class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+Solution 2 using table
+.row {
+    display: table;
+}
+[class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
+
+Solution 3 using flex added August 2015. Comments posted before this don't apply to this solution.
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+*/
+@media only screen and (min-width : 481px) {
+   .flex-row.row {
+	 display: flex;
+	 flex-wrap: wrap;
+   }
+   .flex-row.row > [class*='col-'] {
+	 display: flex;
+	 flex-direction: column;
+   }
+  .flex-row.row:after, 
+  .flex-row.row:before {
+	 display: flex;
+  }
+}
+/* TO CUSTOMIZE SOCIAL TAGS - button become large when hovered on. See http://bootsnipp.com/snippets/featured/social-icon-strip-footer */
+/* See here for different x,y scaling: http://stackoverflow.com/questions/11839655/is-it-possible-to-adjust-a-fonts-vertical-scaling-using-css */
+.aboutMe_social:hover {
+     -webkit-transform: scale(1,1.2);
+     -moz-transform: scale(1,1.2);
+     -o-transform: scale(1,1.2);
+}
+.aboutMe_social {
+     -webkit-transform: scale(1,0.9);
+     /* Browser Variations: */
+     -moz-transform: scale(1,0.9);
+     -o-transform: scale(1,0.9);
+     -webkit-transition-duration: 0.3s;
+     -moz-transition-duration: 0.3s;
+     -o-transition-duration: 0.3s;
+}
+/* To create border around the plots */
+svg {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+/* To change opacity of experience/skill svg on clicked */
+ellipse.clicked {
+	fill-opacity : 1;
+	stroke-opacity : 0.8;
+}
+rect.clicked {
+	fill-opacity : 1;
+	stroke-opacity : 0.8;
+}
+/* To change color, opacity and other properties of experience/skill svg on hovered (via mouseenter) */
+ellipse.hovered {
+	fill: blue;
+	fill-opacity : 1;
+	stroke: white;
+	stroke-opacity : 0.8;
+}
+rect.hovered {
+	fill: blue;
+	fill-opacity : 1;
+	stroke: white;
+	stroke-opacity : 0.8;
+}
+
+ 
+/* CUSTOMIZE ELEMENTS IN RESEARCH-BODY
+-------------------------------------------------- */
+/*DO NOT name this element as "parallax", it does not work due to interference with some other definition */
+.parallaxScroll { 
+	/* The image used is not set - it is done by the code. If not set by code it would look like.. */
+	/* background-image: url(img1.jpg); */
+
+	/* Set a specific height */
+	min-height: 300px; 
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+/* Turn off parallax scrolling for phones and tablets. Increase the pixels if needed */
+@media only screen and (max-width: 800px) {
+    .parallaxScroll {
+        background-attachment: scroll;
+    }
+}
+/* Change top value for affix, so that when transitioning from .affix-top to .affix, the navbar is not pushed very low due to carousel on top */
+.affix {
+	top: 70px;
+}
+
+/* CSS options for affixed sidebar on research page with dropdown options */
+.bs-docs-sidebar .nav .nav>li>a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 30px;
+    font-size: 14px;
+}
+.bs-docs-sidebar .nav>.active>.nav>.active>a {
+    color: #563d7c;
+	border-left: 2px solid #563d7c;
+}
+/* hide all (inactive) nested list */
+.bs-docs-sidebar .nav ul.nav {
+    display: none;           
+}
+/* show active nested list */
+.bs-docs-sidebar .nav>.active>ul.nav {
+    display: block;           
+}
+
+/* CSS option to show header and share button */
+.researchUnitHeadWithShare .header, .researchUnitHeadWithShare .non-header {
+	display: inline-block;
+}
+.researchUnitHeadWithShare .non-header {
+	padding-left: 50px;
+	vertical-align: -5px;
+}

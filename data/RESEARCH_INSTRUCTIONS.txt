@@ -1,0 +1,57 @@
+1) When adding new research values, copy the following template and put on TOP of the list, i.e. after first square bracket "[", but before first curly bracket "{"
+TEMPLATE - includes everything between the dashes, but excluding dashes. Thus, it also includes brackets and end-comma
+Instructions to fill the template is provided later
+----------------
+{
+"id":"",
+"title":"",
+"image":"",
+"startDate":"",
+"endDate":"",
+"oneLineDescription":"",
+"fullDescription":["This is para-1","This is para-2","This is para-3"],
+"subResearch":[
+    {
+	"id":"",
+	"title":"",
+	"fullDescription":["<p>This is para-1</p>","<p>This is para-2</p>"]
+    },
+    {
+	"id":"",
+	"title":"",
+	"fullDescription":["<p>This is para-1</p>","<p>This is para-2</p>"]
+    }
+]
+},
+----------------
+
+
+2) Instructions to add data:
+2.1) Id - Give a unique value. Like, starting from 1 and incrementing everytime. This is only useful when debugging website, and to create links. This will not be displayed anywhere.
+2.2) Title - Add a title, preferably under 5 words
+2.3) Image - First, add an image in image-folder, not in data-folder. For the value to be put, use "image/{imageFileName}", putting appropriate imageFileName
+2.4) Date (startDate and endDate) - Put a start and end date. The webpage does not do any formatting on the date, so please ensure they are in correct format. It will be used as-is and pt on webpage. Either use:
+---- (MM/dd/yyyy) or (MM-dd-yyyy) format to keep in line with US convention. Example: 01/10/2017 (for January 10, 2017)
+---- Or, (MMM/dd/yyyy) or (MMM-dd-yyyy) format to prevent confusion. Example: Jan/10/2017
+Whatever you use, just remain consistent when adding new data
+2.5) OneLineDescription - Give a small one line description about research that will be shown on image
+2.6) Full Description - Give a full description that will be shown on page. Add as many individual entries needed, encloded within "..", and ending with comma. Also note:
+2.6.1) The text should be a properly formatted html.
+2.6.2) Do NOT start a new paragraph in one entry of full description. Only one paragraph in one entry
+2.6.3) If you are putting any html attributes, like, <img src=\"...\" ...>, then put the attribute-value within \" i.e., doule quote preceeded by a backslash. If you need to use quotes anywhere else in text, follow ADDIIONAL INSTRUCTIONS in Section 3
+2.7) SubResearch - This contain individual subtopics relating to original research topic - with aim to provide extra detail. The rules for id, title and fullDescription in subResearch is same as in top research topic. DO NOTE: 
+2.7.1) The id field should be unique. A good way is to use "id" given to main research entry. Example: If main research entry has "id":"1", then for subResearch, use "id" value of "1_1", "1_2", and so on
+2.7.1) In fullDescription entries, a properly formatted html with additional images can be added to provide - see example.
+2.7.2) Furthermore, to provide much more flexibility in formatting subResearch description - the user is required to provide the fully formatted html. The webpage does not do any processing at all, including not putting start and end <p> tags.
+2.8) IMPORTANT: Everytime a new research-id (not subresearch-id) is added, go to MULTIPAGE folder, copy ANY existing html file in the folder and rename it as "research_{newId}_titleHrefDest", replacing {newId} with the correct id of newly added research
+
+
+3) ADDITIONAL INSTRUCTIONS:
+At any time, DO NOT insert quote-symbol in any value. If you need to insert inverted quote, use: 
+" => &quot;
+' => &apos;
+For more "sophistication", use
+&ldquo; = left-double quote (double quote put on opening, at left)
+&rdquo; = right-double quote (double quote put on ending, at right)
+&lsquo; = left-single quote
+&rsquo; = right-single quote (as done for apostophe)

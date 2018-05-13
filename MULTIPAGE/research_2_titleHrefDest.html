@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+	<script type ="text/javascript">
+		var oldUrl = window.location.href;
+		var newUrl = oldUrl.substring(0, oldUrl.length - 5); //removing '.html' at end
+		newUrl = newUrl.replace("MULTIPAGE/","index.html#");
+		window.location.replace(newUrl);
+	</script>
+  </body>
+</html>

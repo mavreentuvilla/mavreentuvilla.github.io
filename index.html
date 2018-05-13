@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta id="head_description" name="description" content=""><!-- to be filled by js -->
+	<meta id="head_keywords" name="keywords" content=""><!-- to be filled by js -->
+	<meta name="author" content="Kunj Prasad">
+    <title id="head_title"></title><!-- to be filled by js -->
+	<meta id="head_pageId" name="self:pageId" content=""><!-- to be filled by js -->
+	<!-- OpenGraph Meta to be filled by JS except og:type -->
+	<meta id="head_og_title" property="og:title" content="" />
+	<meta property="og:type" content="website" />
+	<meta id="head_og_url" property="og:url" content="" />
+	<meta id="head_og_image" property="og:image" content="" />
+    <!-- Bootstrap -->
+    <link href="download/css/bootstrap.min.css" rel="stylesheet">
+    <link href="download/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="download/css/font-awesome.min.css" rel="stylesheet">
+    <link href="download/css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
+	
+</head>
+
+<body>
+	<!-- Set navbar. This is done in index.html because it is common to all webpages -->
+	<div id="body_topNavbar"></div>
+	<!-- Set jumbotron here -->
+	<div id="body_jumbotron"></div>
+	<!-- Set carousel here -->
+	<div id="body_carousel"></div>
+	<!-- Set breadcrumb here -->
+	<div class="container"><div class="row"><div class="col-xs-12"><div id="body_breadcrumb"></div></div></div></div>
+	<!--Set actual content here -->
+	<div id="body_content"></div>
+	
+	<!-- INCLUDE SCRIPTS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- The jquery link is removed because it was haing connection failures
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="download/js/bootstrap.min.js"></script>
+	<!-- d3 js -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<!-- d3-tip.js suitable for d3.v4 See: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7 -->
+	<script src="download/js/d3-tip.js"></script>
+	<!-- load scripts for utilities. Utiity-scripts should be loaded before webpage-loading scripts -->
+	<!-- first load main-utility file -->
+	<script src="js/utility/utils.js"></script>
+	<!-- next the object utility files -->
+	<script src="js/utility/aboutMeUtils.js"></script>
+	<script src="js/utility/expUtils.js"></script>
+	<script src="js/utility/researchUtils.js"></script>
+	<!-- next the main utility for webpage loading -->
+	<script src="js/aboutMe.js"></script>
+	<script src="js/research.js"></script>
+	<!-- finally pageLoad scripts, since it is dependent on individual page load scripts -->
+	<script src="js/utility/pageUtils.js"></script>
+	<!-- onLoad script -->
+	<script type ="text/javascript">
+		//method to detect hashchange and trigger logic
+		$(window).on('hashchange',function() {
+			var existPageId = $('#head_pageId').attr('content');
+			var id = pageUtils.getIdFromHash(window.location.hash);
+			var pageId = pageUtils.getPageIdForId(id);
+			pageUtils.loadPageToId(pageId, id, existPageId);
+		});
+		
+		//Note that we are making single page application. So if someone deliberately goes to url and clicks, the full refresh happens
+		//Else user will be comfortably browsing in existing page and document.ready() will not be called
+		$(document).ready(function() {
+			//this is singlepage structure
+			var id = pageUtils.getIdFromHash(window.location.hash);
+			var pageId = pageUtils.getPageIdForId(id);
+			pageUtils.loadPageToId(pageId, id, '');
+		});
+	</script>
+</body>
+
+</html>

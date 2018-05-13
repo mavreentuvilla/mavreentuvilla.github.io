@@ -1,0 +1,64 @@
+1) If needing to change data, just change values for existing entries. Do now copy-paste new fields
+*NOTE: The template provided below is just for documentation. Do not try to add many such units, as is done when updating research.json
+{
+"name":"",
+"designation":"",
+"image":"",
+"contact":[
+	{
+	    "show":true,
+	    "linkNotPopup":false,
+	    "data":"",
+	    "dataExtra:"";
+	    "faFont":"",
+	    "bsButton":""
+	},
+	{
+	    "show":true,
+	    "linkNotPopup":false,
+	    "data":"",
+	    "faFont":"",
+	    "bsButton":""
+	}
+],
+"fullDescription":["This forms para-1","This forms para-2","This forms para-3"],
+"quote": {
+		"show":true/false,
+		"quoteText":"",
+		"author":"",
+		"sourceText":"",
+		"sourceLink":""
+	}
+}
+
+
+2) Instructions to add data:
+2.1) Name - Your name, as you would like it to appear
+2.2) Designation - Your current designation, as you would like it to appear
+2.3) Image - Your photo to show on webpage. First, add an image in image-folder, not in data-folder. For the value to be put, use "image/{imageFileName}", putting appropriate imageFileName
+2.4) Contact - the link for contact. Following are the instructions:
+2.4.1) Enter false for "show" if you don't want that contact to show. If "show" has value of true, then do enter all other details. 
+2.4.2) Enter "linkNotPopup" as true if the value being entered in "data" field is a web-link. If it is plain data, like building number, then set linkNotPopup=false. Note that popups also work on mobile devices. So setting as popup won't do harm
+2.4.3) In data field, enter the corresponding data (a plain data, or web-link). If there is no value to be put, set "linkNotPopup" as true, set data as "#". Do not leave fields empty. Note that a logic will be put on webpage such that if the provided link is a popup, not link (i.e. linkNotPopup=false), then user will be given option to copy this data. For dataExtra field, provide a value only if linkNotPopup=false. In this case, dataExtra will be added to popup, but when user clicks popup, this data will not be copied. Example: popup can contai building address - that goes in data field so tha it gets copied. User may also provide Google Maps link to address, we don't want that copied, so it goes in dataExtra field
+2.4.4) These apply to both "faFont" and "bs-Button" fields:
+2.4.4.1) DO NOT change value of "faFont" and "bsButton". 
+2.4.4.2) DO NOT delete the entries already made else "faFont" and "bsButton" values will be lost. Simply set show to false if a certain contact link is not supposed to be shown. 
+2.4.4.3) For bootstrap buttons, Reference: https://lipis.github.io/bootstrap-social/
+2.4.4.4) For buttons where there is no boot-strap social button, just use default value of "btn-primary" so that it shows in blue
+2.4.5) If new contact button is needed, make sure to write valid json, search for bootstrap button and font-awesome icon
+2.5) fullDescription - Complete description about yourself. Add as many individual entries needed, encloded within "..", and ending with comma. Also note:
+2.5.1) The text should be a properly formatted html.
+2.5.2) Do NOT start a new paragraph in one entry of full description. Only one paragraph in one entry
+2.5.3) If you are putting any html attributes, like, <img src=\"...\" ...>, then put the attribute-value within \" i.e., doule quote preceeded by a backslash. If you need to use quotes anywhere else in text, follow ADDIIONAL INSTRUCTIONS in Section 3
+2.6) Quote - If you want to show a quote at bottom of your profile. If you DO NOT WANT the quote, set "show" value to false, else keep it true. Give a quoteText - give this value necessarily if "show" is true. Give an author name (optional). Give a source only if author name is also provided - sourceText shows the text that will be visible, sourceLink gives the link to that text. ALSO NOTE: Try to keep quote small and not include any major html formatting, except, like <i>, <b>, etc. Do not start the quote-text with <p> element.
+
+
+3) ADDITIONAL INSTRUCTIONS:
+At any time, DO NOT insert quote-symbol in any value. If you need to insert inverted quote, use: 
+" => &quot;
+' => &apos;
+For more "sophistication", use
+&ldquo; = left-double quote (double quote put on opening, at left)
+&rdquo; = right-double quote (double quote put on ending, at right)
+&lsquo; = left-single quote
+&rsquo; = right-single quote (as done for apostophe)

@@ -1,0 +1,69 @@
+{
+"name":"Mavreen Rose Tuvilla",
+"designation":"Doctoral Researcher (<a href=\"https://www.chem.purdue.edu/ryu/index.html\" target=\"_blank\">Ryu Group</a>, <a href=\"https://www.chem.purdue.edu/\" target=\"_blank\">Dept. of Chemistry</a> at <a href=\"http://www.purdue.edu/\" target=\"_blank\">Purdue University</a>)",
+"image":"image/MT.jpg",
+"contact":[
+	{
+		"show":true,
+		"linkNotPopup":false,
+		"data":"WTHR110",
+		"dataExtra":"<a href=\"https://www.google.com/maps/place/Richard+Benbridge+Wetherill+Laboratory+of+Chemistry/@40.4261796,-86.913102,19.27z/data=!4m8!1m2!2m1!1swetherill+purdue!3m4!1s0x0:0x36aba311641c1373!8m2!3d40.4264551!4d-86.913077\" target=\"_blank\">Google Map</a>",
+		"faFont":"fa fa-fort-awesome",
+		"bsButton":"btn-primary"
+	},
+	{
+		"show":true,
+		"linkNotPopup":false,
+		"data":"+1 (234)567-8900",
+		"faFont":"fa fa-phone",
+		"bsButton":"btn-primary"
+	},
+	{
+		"show":true,
+		"linkNotPopup":false,
+		"data":"mtuvilla@purdue.edu",
+		"faFont":"fa fa-envelope-o",
+		"bsButton":"btn-primary"
+	},
+	{
+		"show":true,
+		"linkNotPopup":true,
+		"data":"https://www.linkedin.com/in/mavreen-rose-tuvilla-79a90468",
+		"faFont":"fa fa-linkedin",
+		"bsButton":"btn-linkedin"
+	},
+	{
+		"show":true,
+		"linkNotPopup":true,
+		"data":"http://www.google.com/profiles/102942621474521258726",
+		"faFont":"fa fa-google-plus",
+		"bsButton":"btn-google"
+	},
+	{
+		"show":true,
+		"linkNotPopup":true,
+		"data":"https://www.facebook.com/mavreen.rose",
+		"faFont":"fa fa-facebook",
+		"bsButton":"btn-facebook"
+	},
+	{
+		"show":true,
+		"linkNotPopup":true,
+		"data":"https://twitter.com/mavreenrose",
+		"faFont":"fa fa-twitter",
+		"bsButton":"btn-twitter"
+	}
+],
+"fullDescription":[
+	"My first love has always been chemistry and my passion is teaching. My first job straight out of college was as an assistant instructor in general chemistry to engineering students. Yet, teaching middle school and high school in Arizona was quite an eye opener to me. I realized that students start off curious and eager to learn when they first encounter science, yet start to grow a dislike for science as they progress through school. I began to wonder if there is something wrong with how we teach science! I wondered why some students stopped asking questions when they enter middle school, why some of my lessons worked better than others, and why some students seemed more engaged than others. I wanted to understand what made my students identify as &ldquo;science people&rdquo; and what discouraged them from science. My need to understand brought me to Purdue University to pursue chemistry education. I hope that as I find my answers, I also find ways to make science truly for all",
+	"This is a smaple paragraph-2",
+	"This is a sample paragraph-3"
+],
+"quote": {
+			"show":true,
+			"quoteText":"My first love has always been chemistry and my passion is teaching",
+			"author":"Mavreen Tuvilla",
+			"sourceText":"",
+			"sourceLink":""
+		}
+}

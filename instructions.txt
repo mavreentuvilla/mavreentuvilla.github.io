@@ -1,0 +1,146 @@
+INSTRUCTIONS:
+
+1) From Bootstrap (http://getbootstrap.com/getting-started/), download the css/js/fonts
+2) Download Font Awesome (http://fontawesome.io/)
+3) Download Bootstrap Social (https://lipis.github.io/bootstrap-social/)
+
+
+
+
+EXTRA DETAILS:
+
+* The first 3 lines in <head> should always be 
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+* VERY VERY IMPORTANT: Javascript closure (See http://www.w3schools.com/js/js_function_closures.asp). This is useful when pasing callbacks to ajax
+---- See comments in pageUtils.loadPageToId() method
+
+* VERY VERY IMPORTANT: This is taken from facebook's page where they give instructions on creating share button. The important this is that by assigning an "id" to scripts, this way they can be inserted dynamically. Maybe, mix it with deferred/promise to make it async...
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+----NOW see here: http://tumblr.christophercamps.com/post/4072517874/dynamic-tweet-button-text-using-jquery
+Note the jquery command at end: $.getScript('http://platform.twitter.com/widgets.js');
+This way scripts can be loaded at a later time!!
+
+**** VERY VERY IMPORTANT: Do not assign values from JSON array as value to a new variable. JS will create reference, not a copy. See http://stackoverflow.com/questions/6605640/javascript-by-reference-vs-by-value
+
+**** VERY VERY IMPORTANT: D3 - note that construction of figures, etc. happens in async manner. So if you need some function to be apply "after" images have been drawn, then you need to pass it as CALLBACK to D3.
+**Example: See, http://stackoverflow.com/questions/14697232/how-do-i-show-a-bootstrap-tooltip-with-an-svg-object
+Look at fiddles given there: http://jsfiddle.net/selvaG/eQmYX/39/  --- The tooltip on circles does not work. Now, move the $(document).ready() from head to end of JS section. The tooltip starts working. Since tooltip cannot start till elements are there, it needs to be placed after D3 code. But even more d3 is async, proper way it to give as callback.
+**Second: Note the difference between D3's call() and each() method. BOTH these methods can be chained to execute a function at a particular point in D3. Thus, by keeping them at end after an element has been drawn and "enter()" or "exit()" called ENSURES that "happens-after" relationship of function execution. Also, not difference between call() and each(). call() is given entire selection of elements. each() is given each element.
+Example use "for each()" taking "data-point" as argument: d3.selectAll("..").enter()... .each(function(d,i) {console.log(d);})
+Example use "for call()" taking "selection" as argument: d3.selectAll("..").enter()... .call(function(sel){ sel.each(function(d,i) {console.log(d); console.log(i);}) });
+
+***VERY IMPORTANT : D3 - If one wants to make plots for ordinal-x-axis, then one can start by using a "band" scale (scaleBand) for which it is easy to make padding, and get width of band. Then immediately before making axis-ticks, change the domain of scaleBand and set it to ordinal array. Now use the scale in making axis. This will now display ordinal ticks!!
+
+***VERY IMPORTANT : D3 - See http://bl.ocks.org/hunzy/11110940 ... by setting innerTickHeight to be negative and size same as plot width/height, one can make background grid lines!!
+---- See https://bl.ocks.org/d3noob/c506ac45617cf9ed39337f99f8511218 ---- it has both gridlines and ticks.. essentially the method is called twice, and when making gridlines, no ticks are put
+
+* For some of the url used to share, see http://www.sharelinkgenerator.com/
+
+* IMPORTANT: In writing <a href="...", if you start by double slashes, like, href="//google.com...", then it takes http or https depending on call used.
+---- IMPORTANT: ALSO NOTE: when putting url in href, url encode anything going in. ALSO, instead of using "&" to pass query params, use &amp; to escape it with html
+
+* Since HTML 5, "id" tag can be used in <head>, <meta>, etc. Use it to dynamically define these values
+
+* If trying to use jquery load() function by reading another file, it may error out if you are trying to read html file. To make it work, cd to corresponding directory with html and then just start a python server in that directory. For python 3, it is "python -m http.server", which starts server at localhost:8000
+
+* (VERY VERY IMPORTANT) When maving function in javascript namespace, and one method calling other in same namespace, do not:
+---- just write mathed name. That causes JS to search for method in global namespace and it fails
+---- use "this." prefix. This formatting fails when function comprising of other functions is passed to async calls as callback.
+
+* IMPORTANT (for tooltip and popver): use {'container':'body'} option when enabling tooltip/popover. This increases its size which is otherwise too small, limited to button group. Also, now if container becomes too small (for mobile devices), the tooltip wraps
+
+* http://stackoverflow.com/questions/11645501/bootstrap-accordion-not-auto-collapsing-previously-opened-panel
+"For posterity, another reason I just discovered that would prevent the accordion panels from auto-collapsing is if the .panel elements are not direct children of the accordion (.panel-group element). I had wrapped my panel content in a div within my .panel-group and the accordion didn't like that."
+Also see: http://stackoverflow.com/questions/19425165/bootstrap-3-accordion-button-toggle-data-parent-not-working
+
+* IMPORTANT: See last set of codes in research.setBodyContent() [research.js] to note how to make all panels in accordion of same height regardless of content! Following are the points:
+---- Firstly, In accordion, panel-heading always shows, so it does not contribute anything to logic. Only panel's body hides/shows and that contributes to total height that can change with content size.
+---- Now, go to panel element with class of "panel-collapse collapse", or "panel-collapse collapse in". The "in" causes:"display:block" and its absence causes "display:none" due to panel-collapse class. So opening/closing accordion sets "in" class which causes following element to show, or its absence causes element to hide. This gives accordion effect.
+---- In javascript, iterate over all elements of an accordion. Remove class "in" to cause the full panel-body content to be shown. Then get height for all panel-body (not full panel) in an acoordion. Get the max height. 
+----|---- **EDIT:: No need to add/remove class, just ask query for height. It gives the value even if "in" class is set/not-set. See http://stackoverflow.com/questions/3632120/jquery-height-width-and-displaynone   and   http://jsfiddle.net/Gts6A/2/
+---- Now, need to set height. After getting height, setback "in" class if it was already there - to not disturb original content.
+----|---- Do not set it on main "class=panel" div. Because only panel_body is subjects to display changes. If height is set on entire panel, you'll always see empty blocks. Similarly, do not set height on panel_title.
+----|---- Do not set height even on the element with class of "panel-collapse collapse", or "panel-collapse collapse in". This is because the property "display:block" means that if panel is hidden and then reopened, it will resize to size of content inside, removing effect of fixed witdth accordion. So affect of same height lasts for only 1 cycle. BUT.. change this div to have class "in" which opens up underlying panel-body. Then get height of body and remove class "in" if it wasn't previously set. Before getting height, also remove any previous setting
+----|---- ONE MORE IMPORTANT THING TO NOTE: IMPORTANT: Note the code.. but having a trigger on window-resize event, it is always ensured that accordion height changes as user changes window size!!
+
+* VERY IMPORTANT: In floating top nav in bootstrap, it is likely that scrollspy gets triggered later, or, more importantly, when an element is clicked on, page goes to that part - but that part of interest gets hidden behind floating top bar. So how to automatically make the page go down a bit. Tricks: See https://css-tricks.com/hash-tag-links-padding/  and in code, see utilities.getInvPageScrollDownElemWithIdAndWidth) and its use in other js.
+
+* VERY IMPORTANT: Deferred vs Promise in javascript : https://www.sitepoint.com/introduction-jquery-deferred-objects/
+Look at $.when().then()
+
+* Look at .trigger() vs .triggerHandler() [See: http://api.jquery.com/triggerhandler/]. TriggerHandler does not trigger the event, but triggers handlers attached with that event happening on the element. trigger() triggers the events, which then causes the handlers to get called
+
+* inline-block as much cleaner and nicer alternative to float. This can help put <h2> and <p> on same line, which otherwise won't be because they have block display. See http://www.w3schools.com/css/css_inline-block.asp
+
+*VERY VERY IMPORTANT: It is seen that sometimes it is necessary in JS to do : "var x = f(); return x;" rather than "return f()". For example, in aboutMeUtils.getBootstrapContactForPopupData, if "copyData" variable in return line is substituted with the expression, then click-handlers [utils.copyOnClickHandler] do not work on the data!
+
+**** VERY VERY IMPORTANT: Always register .on() handlers after the element has been added to page. If some element are dynamically dropped, then readded, ...then re-register the handler(s) to those elements
+
+***IMPORTANT: Note that setting width=100% is a nice way of making image responsive!!
+* Vreating fixed aspect ratio image via "CSS Padding" trick : http://alistapart.com/article/creating-intrinsic-ratios-for-video/
+
+* Use of Map in javascript - specially look at iteration over it from mozilla mdn docs
+for (var [key, value] of myMap) {...}
+
+
+
+
+ELEMENTS USED:
+* Ajax (.. and thus, $.Deferred()), and Promise. VERY IMPORTANT: Use of closure js method.. and function-returning-function
+* CSS': Border, Padding, Margin, Position, Display
+* Carousel
+* Scroll-spy
+* Affix (by javascript, also changing top position from where .affix-top to .affix transitions, thereby enabling carousel to be put, but not letting affix position during .affix to be very low)
+* IMPORTANT: Parallax scrolling
+* Navbar
+* Hide/Visible only for certain screen size
+* Hide for printing
+* Social Icons, Font-awesome
+* Blockquote
+* Alert
+* Tooltip
+* Accordion (VERY IMPORTANT: Incl. logic with fixed height accordion - important)
+* Scrollspy on accordion, making accordion open close with ext click (Incl. Refreshing scrollSpy as new elements are add/delete or just place changed). Also, made use of events exposed by bootstrap on collapsing/expanding - See: research.activateScrollSpy()
+* IMPORTANT: Add 0 height element that cause page to shift down when clicking a href link
+* IMPORTANT: Bootstrap like auto-expand/collapse sidebar : http://www.codingeverything.com/2014/02/BootstrapDocsSideBar.html
+* VIDEO/AUDIO embed (IMPORTANT: Avoid responsive embed - it seems to affect the scrollSpy's proper use, probably because height cannot be nicely determined. Just give a height and set width=100%!!!)
+* IMPORTANT: Share buttons, use of OpenGraph meta, use of "redirect" from webpage to single-page-application
+* Use of webkit transform for scaling. Also can scale x and y differently, see here for different x,y scaling: http://stackoverflow.com/questions/11839655/is-it-possible-to-adjust-a-fonts-vertical-scaling-using-css
+* Buttons
+
+
+
+D3:
+****IMPORTANT: Seeting time ticks, see https://bl.ocks.org/mbostock/1071269
+**IMPORTANT: D3-tooltip with D3.v4 (http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7)
+
+
+
+Possibly.. later
+* MINIFYING
+* SVG
+* Adding share buttons
+
+
+ElEMENTS KNOW-OF BUT NOT USED:
+* PillBox
+* Well
+* Form
+* Pagination and Lazy loading
+* Tables
+* Lists
+* Label
+* Badges
+* Panel
+* Jumbotron
+* Thumbnail
+* Progressbar
